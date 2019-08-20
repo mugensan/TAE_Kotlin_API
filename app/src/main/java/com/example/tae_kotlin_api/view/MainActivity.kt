@@ -1,15 +1,16 @@
-package com.example.tae_kotlin_api
+package com.example.tae_kotlin_api.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.tae_kotlin_api.Constants
+import com.example.tae_kotlin_api.R
 import com.example.tae_kotlin_api.model.MoviePopular
 import com.example.tae_kotlin_api.network.MovieRequest
 import com.example.tae_kotlin_api.network.RetrofitInstances
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.create
 
 class MainActivity : AppCompatActivity() {
 
