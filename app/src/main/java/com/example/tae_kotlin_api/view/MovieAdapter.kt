@@ -9,11 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tae_kotlin_api.Constants
 import com.example.tae_kotlin_api.R
 import com.example.tae_kotlin_api.model.MoviePopular
+import com.example.tae_kotlin_api.model.Results
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row.view.*
 
 //in the adapter you have a constructor
-class MovieAdapter(private val moviePopular: MoviePopular)
+class MovieAdapter(private val moviePopular: MoviePopular, private val listener: OnMovieClickListener)
     : RecyclerView.Adapter<MovieViewHolder>(){
 
 
@@ -37,6 +38,8 @@ class MovieAdapter(private val moviePopular: MoviePopular)
         //for the image, declare the image in the viewHolder
 //        Picasso.get().load("https://image.tmdb.org/t/p/w185" + moviePopular.results[position].poster_path).into(holder.image)
         Picasso.get().load(Constants.IMG + moviePopular.results[position].poster_path).into(holder.image);
+        //holder for the onClickListener
+        holder.bind(moviePopular.results[position],listener)
     }
 
 
@@ -44,14 +47,41 @@ class MovieAdapter(private val moviePopular: MoviePopular)
 //we are extending the viewHolder, it can be outside or inside the class
 //outside
 class MovieViewHolder (view: View): RecyclerView.ViewHolder(view),View.OnClickListener{
+
+
+
+
     override fun onClick(p0: View?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+
+
+    }
+
+    fun bind(results: Results, listener: OnMovieClickListener) {
+        itemView.setOnClickListener{
+            listener.onMovieClickListener(results)
+        }
+
     }
 
     //this is where you load your data to the TextView in XML
     val tv_title =view.tv_title
+    val tv_title2 = view.tv_title
     val image: ImageView = view.iv_imageView
     val cardV = view.cv_displayCard
+    val id = view.id
 
+
+
+}
+
+//either create your on clickListenen interface here or create a new interface in view model
+interface OnMovieClickListener{
+    fun onMovieClickListener(result: Results)
+    //next step go to the top in the main class and add private val listener: onMovieClickListener to the parameters
+    //then got to on bind
+    //then alt + enter to create member
+    //go to fun bind (itemView)
+    //then go to main where your (res) is and pass the object (res, object...)
 
 }

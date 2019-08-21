@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">TAE_Kotlin_API</string>
     <string name="tv_title">Title of the movie</string>
+    <string name="overview">Overview</string>
+    <string name="title">Title</string>
+    <string name="vote">Vote</string>
 </resources>
